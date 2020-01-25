@@ -6,6 +6,10 @@ snippet #! "#!"
 set -eu -o pipefail
 endsnippet
 
+snippet script_dir "script_dir"
+script_dir=$(dirname $(readlink -f \$0))
+endsnippet
+
 snippet func "function"
 func() {
   local arg="\$1"; shift
