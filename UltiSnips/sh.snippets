@@ -1,5 +1,12 @@
 priority 0
 
+snippet func "function"
+f() {
+  local arg="$1"; shift
+  exit 1
+}
+endsnippet
+
 snippet getopt "getopt"
 usage_exit() {
   local prog="./$(basename \$0)"
