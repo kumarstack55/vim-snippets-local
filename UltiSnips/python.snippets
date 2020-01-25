@@ -2,9 +2,23 @@ priority 0
 
 snippet #! "#!"
 #!/usr/bin/env python
+#!/usr/bin/env python
 
 if __name__ == '__main__':
     pass
+endsnippet
+
+snippet argparse "argparse"
+import argparse
+
+# 引数を解析する
+parser = argparse.ArgumentParser()
+group = parser.add_mutually_exclusive_group()
+group.add_argument('--dry-run', action='store_true', default=True)
+group.add_argument('--force', dest='dry_run', action='store_false')
+parser.add_argument('--verbose', '-v', action='count', default=0)
+
+args = parser.parse_args()
 endsnippet
 
 # vim:set sw=4:
