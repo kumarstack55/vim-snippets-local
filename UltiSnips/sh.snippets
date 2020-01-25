@@ -1,0 +1,48 @@
+priority 0
+
+snippet getopt "getopt" b
+usage_exit() {
+  local prog="./$(basename \$0)"
+  echo "usage: $prog [OPTIONS...] ARGS..."
+  echo ""
+  echo "options:"
+  echo " -v, --verbose"
+  echo " -h, --help"
+  exit 1
+}
+
+echo_badopt() {
+  echo "\$0: illegal option -- \$1"
+}
+
+main() {
+  local option_verbose=0
+  local opt
+
+  # 引数を解析する
+  while getopts -- "-:hv" opt; do
+    case $opt in
+      -)
+        case $OPTARG in
+          help) usage_exit;;
+          verbose) option_verbose=$(($option_verbose+1));;
+          *) echo_badopt $OPTARG; usage_exit;;
+        esac;;
+      h) usage_exit;;
+      v) option_verbose=$(($option_verbose+1));;
+      \?) usage_exit;;
+    esac
+  done
+  shift $((OPTIND-1))
+
+  if [[ $# -ne 0 ]]; then
+    usage_exit
+  fi
+
+  echo "option_verbose: $option_verbose"
+
+  exit 0
+}
+
+main "$@"
+endsnippet
