@@ -1,19 +1,36 @@
 priority 0
 
-snippet #! "#!"
+snippet #!
 #!/usr/bin/env bash
 
-set -eu -o pipefail
+endsnippet
+
+snippet "# T"
+# TODO: $1
+endsnippet
+
+snippet "# TODO"
+# TODO: $1
+endsnippet
+
+snippet "# vim" "# vim"
+# vim:sw=2 sts=2 ts=2 et:
+endsnippet
+
+snippet set "set"
+set -eux -o pipefail
+
 endsnippet
 
 snippet script_dir "script_dir"
 script_dir=$(dirname $(readlink -f \$0))
+
 endsnippet
 
 snippet func "function"
-func() {
-  local arg="\$1"; shift
-  exit 1
+${1:func}() {
+  local ${2:arg}="\$1"; shift
+  ${3:exit 1}
 }
 endsnippet
 
@@ -62,4 +79,40 @@ main() {
 }
 
 main "$@"
+endsnippet
+
+snippet if
+if ${1:false}; then
+  exit 1 # TODO:
+fi
+endsnippet
+
+snippet "if [["
+if [[ ${1:0 -ne 0} ]]; then
+  exit 1 # TODO:
+fi
+endsnippet
+
+snippet "if [["
+if [[ ${1:0 -ne 0} ]]; then
+  exit 1 # TODO:
+fi
+endsnippet
+
+snippet while
+while ${1:false}; do
+  exit 1 # TODO:
+done
+endsnippet
+
+snippet "while read"
+while read -r ${1:line}; do
+  exit 1 # TODO:
+done
+endsnippet
+
+snippet "while [["
+while [[ ${1:0 -ne 0} ]]; do
+  exit 1 # TODO:
+done
 endsnippet
