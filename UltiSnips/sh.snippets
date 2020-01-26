@@ -1,6 +1,6 @@
 priority 0
 
-snippet #!
+snippet "#!"
 #!/usr/bin/env bash
 
 endsnippet
@@ -17,24 +17,24 @@ snippet "# vim" "# vim"
 # vim:sw=2 sts=2 ts=2 et:
 endsnippet
 
-snippet set "set"
+snippet "set"
 set -eux -o pipefail
 
 endsnippet
 
-snippet script_dir "script_dir"
+snippet "script_dir"
 script_dir=$(dirname $(readlink -f \$0))
 
 endsnippet
 
-snippet func "function"
+snippet "function"
 ${1:func}() {
   local ${2:arg}="\$1"; shift
   ${3:exit 1}
 }
 endsnippet
 
-snippet getopt "getopt"
+snippet "getopt"
 usage_exit() {
   local prog="./$(basename \$0)"
   echo "usage: $prog [OPTIONS...] ARGS..."
@@ -81,7 +81,7 @@ main() {
 main "$@"
 endsnippet
 
-snippet if
+snippet "if"
 if ${1:false}; then
   exit 1 # TODO:
 fi
@@ -93,13 +93,7 @@ if [[ ${1:0 -ne 0} ]]; then
 fi
 endsnippet
 
-snippet "if [["
-if [[ ${1:0 -ne 0} ]]; then
-  exit 1 # TODO:
-fi
-endsnippet
-
-snippet while
+snippet "while"
 while ${1:false}; do
   exit 1 # TODO:
 done
