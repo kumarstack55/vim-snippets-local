@@ -5,12 +5,16 @@ snippet #!
 
 endsnippet
 
+snippet "exit 1"
+exit 1 # TODO: ${1:ここを実装する}
+endsnippet
+
 snippet "# T"
-# TODO: $1
+# TODO: ${1:ここを実装する}
 endsnippet
 
 snippet "# TODO"
-# TODO: $1
+# TODO: ${1:ここを実装する}
 endsnippet
 
 snippet "# vim" "# vim"
@@ -28,15 +32,16 @@ script_dir=$(dirname $(readlink -f \$0))
 endsnippet
 
 snippet function
-${1:func}() {
+${1:function}() {
   local ${2:arg}="\$1"; shift
-  exit 1 # TODO:
+  ${3:exit 1 # TODO: ここを実装する}
 }
 endsnippet
 
 snippet getopt
 usage_exit() {
   local prog="./$(basename \$0)"
+  echo "$1" # TODO: 短い説明を書く
   echo "usage: $prog [OPTIONS...] ARGS..."
   echo ""
   echo "options:"
@@ -54,7 +59,7 @@ main() {
   local opt
 
   # 引数を解析する
-  while getopts -- "-:hv" opt; do
+  while getopts -- "$0-:hv" opt; do
     case $opt in
       -)
         case $OPTARG in
@@ -69,11 +74,13 @@ main() {
   done
   shift $((OPTIND-1))
 
+  # オプションなし引数を確認する
   if [[ $# -ne 0 ]]; then
     usage_exit
   fi
 
   echo "option_verbose: $option_verbose"
+  exit 1 # TODO: 実装する
 
   exit 0
 }
@@ -83,44 +90,44 @@ endsnippet
 
 snippet if
 if ${1:false}; then
-  exit 1 # TODO:
+  ${2:exit 1 # TODO: ここを実装する}
 fi
 endsnippet
 
 snippet "if [["
 if [[ ${1:0 -ne 0} ]]; then
-  exit 1 # TODO:
+  ${2:exit 1 # TODO: ここを実装する}
 fi
 endsnippet
 
 snippet while
 while ${1:false}; do
-  exit 1 # TODO:
+  ${2:exit 1 # TODO: ここを実装する}
 done
 endsnippet
 
 snippet "while read"
 while read -r ${1:line}; do
-  exit 1 # TODO:
+  ${2:exit 1 # TODO: ここを実装する}
 done
 endsnippet
 
 snippet "while [["
 while [[ ${1:0 -ne 0} ]]; do
-  exit 1 # TODO:
+  ${2:exit 1 # TODO: ここを実装する}
 done
 endsnippet
 
 snippet for
 local ${1:name}
-for $1 in words; do
-  exit 1 # TODO:
+for ${1:name} in ${2:words}; do
+  ${3:exit 1 # TODO: ここを実装する}
 done
 endsnippet
 
 snippet "for (("
 local ${1:i}
 for (( $1 = 0 ; $1 < ${2:10}; $1++)); do
-  exit 1 # TODO:
+  ${3:exit 1 # TODO: ここを実装する}
 done
 endsnippet
