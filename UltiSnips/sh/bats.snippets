@@ -1,0 +1,12 @@
+priority 0
+
+snippet @test
+@test "${1:description}" {
+  run ${2:foo nonexistent_filename}
+  $0[ "$status" -eq 0 ]
+  [ "${lines[*]}" -eq 2 ]
+  [ "${lines[0]}" = "first line" ]
+  [ "${lines[1]}" = "second line" ]
+}
+
+endsnippet
